@@ -1,13 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getEntry, getCollection } from 'astro:content';
+
+const homePage = await getEntry('pages', 'home');
+const teamMembers = await getCollection('team');
 ---
 
 <Layout title="HADOW. Architecture">
   <!-- Hero Parallax Section -->
   <section class="hero-section">
     <div class="hero-content" data-speed="0.5">
-      <h1>Engineering <br/> Future-Ready Systems</h1>
-      <p>Progressive architecture for rapidly transforming spaces.</p>
+      <h1 set:html={homePage.data.heroTitle}></h1>
+      <p>{homePage.data.heroSubtitle}</p>
     </div>
     <div class="hero-bg bg-layer-1" data-speed="0.2"></div>
     <div class="hero-bg bg-layer-2" data-speed="0.8"></div>
@@ -24,24 +28,24 @@ import Layout from '../layouts/Layout.astro';
     <div class="vision-container">
       <div class="vision-image-col">
         <div class="sticky-image-wrapper">
-           <div class="sticky-image-placeholder">
-              <span class="architect-name">Ar. Noel Sebastian</span>
-           </div>
+           {homePage.data.architectImage ? (
+              <img src={homePage.data.architectImage} alt={homePage.data.architectName} class="sticky-image-placeholder" style="object-fit: cover;" />
+           ) : (
+              <div class="sticky-image-placeholder">
+                <span class="architect-name">{homePage.data.architectName}</span>
+              </div>
+           )}
         </div>
       </div>
       <div class="vision-text-col">
         <div class="vision-text-block active">
-          <h2>What would design look like if nature became the primary client?</h2>
+          <h2>{homePage.data.visionTitle}</h2>
         </div>
-        <div class="vision-text-block">
-          <p>After years of shaping HADOW through evolving studio experiences, multidisciplinary collaborations, and strategic design thinking, one question constantly stays in my mind — are we simply designing buildings, or are we engineering future-ready systems for living?</p>
-        </div>
-        <div class="vision-text-block">
-          <p>In today's rapidly transforming India, sustainability can no longer remain just a design feature; it must evolve into an economic, cultural, and urban strategy that influences how people live and connect.</p>
-        </div>
-        <div class="vision-text-block">
-          <p>As a principal architect, entrepreneur, and strategist, I believe the future of architecture lies in merging innovation, business intelligence, and responsible design to create spaces that not only look progressive, but genuinely redefine how our cities grow, breathe, and belong.</p>
-        </div>
+        {homePage.data.visionText.map((item: any) => (
+          <div class="vision-text-block">
+            <p>{item.paragraph}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -52,36 +56,17 @@ import Layout from '../layouts/Layout.astro';
     <p class="team-subtitle">Meet the minds behind the momentum.</p>
     
     <div class="team-grid">
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Ar. Noel Sebastian E</h4>
-        <p>Principal Architect</p>
-      </div>
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Ar. Hari Murali</h4>
-        <p>Architect</p>
-      </div>
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Ar. Ashiq Ahmed</h4>
-        <p>Architect</p>
-      </div>
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Mr. Achuthananda Varma</h4>
-        <p>Associate</p>
-      </div>
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Mr. Casten Jose</h4>
-        <p>Associate</p>
-      </div>
-      <div class="team-member">
-        <div class="member-image placeholder-img"></div>
-        <h4>Mr. Lazer A K</h4>
-        <p>Associate</p>
-      </div>
+      {teamMembers.map(member => (
+        <div class="team-member">
+          {member.data.image ? (
+            <img src={member.data.image} alt={member.data.name} class="member-image placeholder-img" style="object-fit: cover;" />
+          ) : (
+            <div class="member-image placeholder-img"></div>
+          )}
+          <h4>{member.data.name}</h4>
+          <p>{member.data.role}</p>
+        </div>
+      ))}
     </div>
   </section>
 </Layout>

@@ -1,28 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+
+const aboutPage = await getEntry('pages', 'about');
+const data = aboutPage.data;
 ---
 
 <Layout title="About - HADOW. Architecture">
   <section class="page-header">
-    <h1 class="page-title">Our Studio</h1>
-    <p class="page-subtitle">Fusing parametric innovation, strategic management, and sustainable living.</p>
+    <h1 class="page-title">{data.title}</h1>
+    <p class="page-subtitle">{data.subtitle}</p>
   </section>
 
   <!-- Animated Counters Section (Liwitech Inspired) -->
   <section class="stats-section">
     <div class="stats-grid">
       <div class="stat-item">
-        <h2 class="stat-number" data-target="150">0</h2>
+        <h2 class="stat-number" data-target={data.projectsCompleted}>0</h2>
         <span class="stat-plus">+</span>
         <p class="stat-label">Projects Completed</p>
       </div>
       <div class="stat-item">
-        <h2 class="stat-number" data-target="12">0</h2>
+        <h2 class="stat-number" data-target={data.yearsExperience}>0</h2>
         <span class="stat-plus">+</span>
         <p class="stat-label">Years of Experience</p>
       </div>
       <div class="stat-item">
-        <h2 class="stat-number" data-target="25">0</h2>
+        <h2 class="stat-number" data-target={data.designAwards}>0</h2>
         <span class="stat-plus"></span>
         <p class="stat-label">Design Awards</p>
       </div>
@@ -32,9 +36,8 @@ import Layout from '../layouts/Layout.astro';
   <!-- Philosophy -->
   <section class="philosophy-section">
     <div class="philosophy-content">
-      <h2>Human-Centered Built Spaces</h2>
-      <p>Hadow Architecture is an architectural design studio based in Thrissur, Kerala. Our work is characterized by "human-centered" built spaces that emphasize vernacular sensibilities and functional, high-performance environments.</p>
-      <p>A notable aspect of our firm is the integration of digital and tech-first solutions, including HADOW ZYNC—an intelligent dashboard designed to streamline communication and project management between our studio and our clients.</p>
+      <h2>{data.philosophyTitle}</h2>
+      <div set:html={aboutPage.body}></div>
     </div>
   </section>
 

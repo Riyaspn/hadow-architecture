@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
 ---
 
 <Layout title="Services - HADOW. Architecture">
@@ -9,36 +12,14 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <section class="services-section">
-    <div class="service-item">
-      <div class="service-number">01.</div>
-      <div class="service-text">
-        <h2>Architecture</h2>
-        <p>We approach architecture as the engineering of future-ready systems. From bespoke residential villas to large-scale commercial complexes, our designs are rooted in vernacular sensibilities while leveraging cutting-edge parametric innovation.</p>
+    {services.map((service, index) => (
+      <div class="service-item">
+        <div class="service-number">0{index + 1}.</div>
+        <div class="service-text">
+          <h2>{service.data.title}</h2>
+          <div set:html={service.body}></div>
+        </div>
       </div>
-    </div>
-    
-    <div class="service-item">
-      <div class="service-number">02.</div>
-      <div class="service-text">
-        <h2>Interior Design</h2>
-        <p>Our interior spaces are crafted to perform. We focus on human-centered ergonomics, natural lighting, and sustainable material palettes that foster well-being and productivity in every room.</p>
-      </div>
-    </div>
-    
-    <div class="service-item">
-      <div class="service-number">03.</div>
-      <div class="service-text">
-        <h2>Landscape Strategy</h2>
-        <p>We blur the lines between the built and the natural environment. Our landscape designs are an extension of the architecture, focusing on native planting, water management, and seamless indoor-outdoor transitions.</p>
-      </div>
-    </div>
-    
-    <div class="service-item">
-      <div class="service-number">04.</div>
-      <div class="service-text">
-        <h2>HADOW ZYNC (Client Portal)</h2>
-        <p>Our proprietary intelligent dashboard redefines client communication. Track project progress, view 3D renders, and manage approvals in real-time through a beautifully designed digital interface.</p>
-      </div>
-    </div>
+    ))}
   </section>
 </Layout>

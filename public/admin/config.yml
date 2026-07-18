@@ -18,3 +18,48 @@ collections:
       - {label: "Category", name: "category", widget: "string"}
       - {label: "Featured Image", name: "image", widget: "image"}
       - {label: "Description", name: "body", widget: "markdown"}
+  
+  - name: "team"
+    label: "Team Members"
+    folder: "src/content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+
+  - name: "services"
+    label: "Services"
+    folder: "src/content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "body", widget: "markdown"}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/content/pages/home.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: "Hero Title", name: "heroTitle", widget: "string"}
+          - {label: "Hero Subtitle", name: "heroSubtitle", widget: "string"}
+          - {label: "Vision Title", name: "visionTitle", widget: "string"}
+          - {label: "Vision Paragraphs", name: "visionText", widget: "list", field: {label: "Paragraph", name: "paragraph", widget: "text"}}
+          - {label: "Architect Name", name: "architectName", widget: "string"}
+          - {label: "Architect Image", name: "architectImage", widget: "image", required: false}
+      
+      - file: "src/content/pages/about.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Page Subtitle", name: "subtitle", widget: "string"}
+          - {label: "Projects Completed", name: "projectsCompleted", widget: "number"}
+          - {label: "Years of Experience", name: "yearsExperience", widget: "number"}
+          - {label: "Design Awards", name: "designAwards", widget: "number"}
+          - {label: "Philosophy Title", name: "philosophyTitle", widget: "string"}
+          - {label: "Philosophy Text", name: "philosophyText", widget: "markdown"}
