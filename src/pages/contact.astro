@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact - HADOW. Architecture">
+  <section class="page-header">
+    <h1 class="page-title">Start a Conversation</h1>
+    <p class="page-subtitle">We are always looking for visionary clients and new architectural challenges.</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-container">
+      
+      <div class="contact-info">
+        <div class="info-block">
+          <h3>Studio HQ</h3>
+          <p>West Fort, Thrissur<br>Kerala, India</p>
+        </div>
+        <div class="info-block">
+          <h3>New Business</h3>
+          <p><a href="mailto:hello@hadowarchitecture.in">hello@hadowarchitecture.in</a></p>
+        </div>
+        <div class="info-block">
+          <h3>Client Portal</h3>
+          <p><a href="#" class="portal-link">Login to HADOW ZYNC</a></p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form action="#" method="POST">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email Address" required>
+          </div>
+          <div class="form-group">
+            <select id="inquiry" name="inquiry">
+              <option value="residential">Residential Architecture</option>
+              <option value="commercial">Commercial Space</option>
+              <option value="interior">Interior Design</option>
+              <option value="other">Other Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</Layout>

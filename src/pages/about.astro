@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About - HADOW. Architecture">
+  <section class="page-header">
+    <h1 class="page-title">Our Studio</h1>
+    <p class="page-subtitle">Fusing parametric innovation, strategic management, and sustainable living.</p>
+  </section>
+
+  <!-- Animated Counters Section (Liwitech Inspired) -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h2 class="stat-number" data-target="150">0</h2>
+        <span class="stat-plus">+</span>
+        <p class="stat-label">Projects Completed</p>
+      </div>
+      <div class="stat-item">
+        <h2 class="stat-number" data-target="12">0</h2>
+        <span class="stat-plus">+</span>
+        <p class="stat-label">Years of Experience</p>
+      </div>
+      <div class="stat-item">
+        <h2 class="stat-number" data-target="25">0</h2>
+        <span class="stat-plus"></span>
+        <p class="stat-label">Design Awards</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy-section">
+    <div class="philosophy-content">
+      <h2>Human-Centered Built Spaces</h2>
+      <p>Hadow Architecture is an architectural design studio based in Thrissur, Kerala. Our work is characterized by "human-centered" built spaces that emphasize vernacular sensibilities and functional, high-performance environments.</p>
+      <p>A notable aspect of our firm is the integration of digital and tech-first solutions, including HADOW ZYNC—an intelligent dashboard designed to streamline communication and project management between our studio and our clients.</p>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.stat-number');
+      
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = +entry.target.getAttribute('data-target');
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            
+            let current = 0;
+            const updateCounter = () => {
+              current += increment;
+              if (current < target) {
+                entry.target.innerText = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+              } else {
+                entry.target.innerText = target;
+              }
+            };
+            
+            updateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      counters.forEach(counter => {
+        observer.observe(counter);
+      });
+    });
+  </script>
+</Layout>
