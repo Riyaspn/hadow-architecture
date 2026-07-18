@@ -48,7 +48,7 @@ collections:
           - {label: "Hero Title", name: "heroTitle", widget: "string"}
           - {label: "Hero Subtitle", name: "heroSubtitle", widget: "string"}
           - {label: "Vision Title", name: "visionTitle", widget: "string"}
-          - {label: "Vision Paragraphs", name: "visionText", widget: "list", field: {label: "Paragraph", name: "paragraph", widget: "text"}}
+          - {label: "Vision Paragraphs", name: "visionText", widget: "list", fields: [{label: "Paragraph", name: "paragraph", widget: "text"}]}
           - {label: "Architect Name", name: "architectName", widget: "string"}
           - {label: "Architect Image", name: "architectImage", widget: "image", required: false}
       
