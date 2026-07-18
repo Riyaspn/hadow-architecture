@@ -4,24 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager - HADOW. Architecture</title>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
-    <!-- Netlify Identity Widget for authentication (works on Cloudflare Pages too) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Sveltia CMS: A lightweight, drop-in replacement for Decap CMS that works perfectly on Cloudflare Pages -->
+    <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </head>
   <body>
-    <!-- Include the script that enables Netlify Identity on this page. -->
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+    <!-- The CMS interface will automatically render here -->
   </body>
 </html>
