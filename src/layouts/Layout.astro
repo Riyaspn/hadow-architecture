@@ -38,8 +38,20 @@ const { title } = Astro.props;
         <a href="/services" class="nav-link">Services</a>
         <a href="/contact" class="nav-link">Contact</a>
       </div>
-      <div class="menu-btn">Menu</div>
+      <div class="menu-btn" id="mobile-menu-btn">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/projects" class="mobile-link">Projects</a>
+      <a href="/about" class="mobile-link">About</a>
+      <a href="/services" class="mobile-link">Services</a>
+      <a href="/contact" class="mobile-link">Contact</a>
+    </div>
 
     <!-- Page Content Slot -->
     <slot />

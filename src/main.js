@@ -178,3 +178,21 @@ textBlocks.forEach((block, i) => {
     }
   });
 });
+
+// --- 4. Mobile Menu Toggle ---
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+if (mobileBtn && mobileOverlay) {
+  mobileBtn.addEventListener('click', () => {
+    mobileBtn.classList.toggle('open');
+    mobileOverlay.classList.toggle('active');
+    
+    // Toggle body scroll lock
+    if (mobileOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+}
