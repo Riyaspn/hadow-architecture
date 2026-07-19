@@ -29,7 +29,9 @@ const teamMembers = await getCollection('team');
       <div class="vision-image-col">
         <div class="sticky-image-wrapper">
            {homePage.data.architectImage ? (
-              <img src={homePage.data.architectImage} alt={homePage.data.architectName} class="sticky-image-placeholder" style="object-fit: cover;" />
+              <div class="sticky-image-placeholder" style={`background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%), url('${homePage.data.architectImage}'); background-size: cover; background-position: center;`}>
+                <span class="architect-name">{homePage.data.architectName}</span>
+              </div>
            ) : (
               <div class="sticky-image-placeholder">
                 <span class="architect-name">{homePage.data.architectName}</span>
