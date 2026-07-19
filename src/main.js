@@ -73,89 +73,92 @@ gsap.to('.hero-content', {
 
 // --- 2. Scroll-Linked Image Sequence (Canvas) ---
 const canvas = document.getElementById('hero-lightpass');
-const context = canvas.getContext('2d');
-const loadingIndicator = document.getElementById('loading-indicator');
 
-// Set canvas dimensions dynamically for responsiveness
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+if (canvas) {
+  const context = canvas.getContext('2d');
+  const loadingIndicator = document.getElementById('loading-indicator');
 
-const frameCount = 240; // Updated to match your 240 extracted frames
-const currentFrame = index => (
-  // Path for ezgif generated frames
-  `/frames/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
-);
-
-const images = [];
-const airpods = {
-  frame: 0
-};
-
-// Preload images
-let loadedImages = 0;
-for (let i = 0; i < frameCount; i++) {
-  const img = new Image();
-  img.src = currentFrame(i);
-  images.push(img);
-  
-  img.onload = () => {
-    loadedImages++;
-    if (loadedImages === frameCount) {
-      loadingIndicator.style.display = 'none'; // Hide loading text
-      render(); // Draw the first frame once all are loaded
-    }
-  };
-  
-  // If image is missing (e.g., user hasn't added them yet), draw placeholder
-  img.onerror = () => {
-    loadingIndicator.innerText = "Add your frames to public/frames/ to see the animation.";
+  // Set canvas dimensions dynamically for responsiveness
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
-}
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
 
-// GSAP ScrollTrigger to scrub through frames
-gsap.to(airpods, {
-  frame: frameCount - 1,
-  snap: "frame",
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".canvas-section",
-    start: "top top",
-    end: "+=2000", // The scroll distance (pixels) to play the whole animation
-    scrub: 0.5, // Smooth scrubbing
-    pin: true // Pin the canvas while scrolling
-  },
-  onUpdate: render // Call render on every frame update
-});
-
-// Function to draw image to canvas (acting like object-fit: cover)
-function render() {
-  if (!images[airpods.frame] || !images[airpods.frame].complete) return;
-  
-  const img = images[airpods.frame];
-  
-  // Clear the canvas
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Math for 'object-fit: cover' logic so it is responsive on all screens
-  const hRatio = canvas.width / img.width;
-  const vRatio = canvas.height / img.height;
-  
-  // On mobile screens, use Math.min ('contain') so the full house is visible without side cropping.
-  // On desktop screens, use Math.max ('cover') to fill the entire window.
-  const isMobile = window.innerWidth <= 768;
-  const ratio = isMobile ? Math.min(hRatio, vRatio) : Math.max(hRatio, vRatio);
-  const centerShift_x = (canvas.width - img.width * ratio) / 2;
-  const centerShift_y = (canvas.height - img.height * ratio) / 2;
-  
-  context.drawImage(
-    img, 
-    0, 0, img.width, img.height,
-    centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+  const frameCount = 240; // Updated to match your 240 extracted frames
+  const currentFrame = index => (
+    // Path for ezgif generated frames
+    `/frames/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
   );
+
+  const images = [];
+  const airpods = {
+    frame: 0
+  };
+
+  // Preload images
+  let loadedImages = 0;
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    images.push(img);
+    
+    img.onload = () => {
+      loadedImages++;
+      if (loadedImages === frameCount) {
+        if (loadingIndicator) loadingIndicator.style.display = 'none'; // Hide loading text
+        render(); // Draw the first frame once all are loaded
+      }
+    };
+    
+    // If image is missing (e.g., user hasn't added them yet), draw placeholder
+    img.onerror = () => {
+      if (loadingIndicator) loadingIndicator.innerText = "Add your frames to public/frames/ to see the animation.";
+    }
+  }
+
+  // GSAP ScrollTrigger to scrub through frames
+  gsap.to(airpods, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".canvas-section",
+      start: "top top",
+      end: "+=2000", // The scroll distance (pixels) to play the whole animation
+      scrub: 0.5, // Smooth scrubbing
+      pin: true // Pin the canvas while scrolling
+    },
+    onUpdate: render // Call render on every frame update
+  });
+
+  // Function to draw image to canvas (acting like object-fit: cover)
+  function render() {
+    if (!images[airpods.frame] || !images[airpods.frame].complete) return;
+    
+    const img = images[airpods.frame];
+    
+    // Clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Math for 'object-fit: cover' logic so it is responsive on all screens
+    const hRatio = canvas.width / img.width;
+    const vRatio = canvas.height / img.height;
+    
+    // On mobile screens, use Math.min ('contain') so the full house is visible without side cropping.
+    // On desktop screens, use Math.max ('cover') to fill the entire window.
+    const isMobile = window.innerWidth <= 768;
+    const ratio = isMobile ? Math.min(hRatio, vRatio) : Math.max(hRatio, vRatio);
+    const centerShift_x = (canvas.width - img.width * ratio) / 2;
+    const centerShift_y = (canvas.height - img.height * ratio) / 2;
+    
+    context.drawImage(
+      img, 
+      0, 0, img.width, img.height,
+      centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+    );
+  }
 }
 
 // --- 3. Sticky Scroll Reveal (Vision Section) ---
