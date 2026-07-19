@@ -1,8 +1,9 @@
 ---
-title: "Wellness Boutique & Yoga Center"
-category: "Wellness"
-image: ""
+title: Wellness Boutique & Yoga Center
+category: Wellness
+image: /projects/imgi_39_479494124_18047412665220437_1040172628623708572_n.jpg
 ---
+
 Step into a world of holistic healing and mindful living at our exclusive wellness boutique, nestled in the heart of Kerala. Designed with a striking pyramid-shaped roof, our space harmonizes sacred geometry with sustainable architecture, creating an environment that rejuvenates the body, mind, and soul.
 
 Experience Yoga & Meditation — Flow seamlessly into tranquility in our thoughtfully designed yoga sanctuary.
