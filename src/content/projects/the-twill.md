@@ -1,8 +1,9 @@
 ---
-title: "The Twill"
-category: "Residential"
-image: ""
+title: The Twill
+category: Residential
+image: /projects/imgi_22_691542181_18091334246220437_2439411358572535211_n.jpg
 ---
+
 The Twill is a residential project envisioned around the seamless interconnection of courtyards — where every internal and external space flows as a continuous experience. Spatial zoning was carefully orchestrated to enhance openness, ventilation, and visual dialogue between nature and architecture. Wrapped in warm tropical tones and layered with artistic textures, the interiors merge like strokes of a painting, unfolding through the home with the rhythm and emotion of poetry.
 
 **Client:** Mr. Cijent & Evylin  
